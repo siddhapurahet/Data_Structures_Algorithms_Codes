@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int totalMoney(int n) {
+        
+        int sum = 0;
+
+        if(n <= 7) {
+            for(int index=1; index<=n; index++) {
+                sum += index;
+            }
+            return sum;
+        } else {
+            int full_week = n / 7;    
+            int rem_days = n % 7;     
+            int monday_count = 1;
+            while(full_week--) {
+                for(int index=monday_count; index<monday_count+7; ++index) {
+                    sum += index;  
+                    cout<<sum<<endl;  
+                }
+                ++monday_count;  
+            }
+
+            for(int index=monday_count; index<monday_count + rem_days; index++) {
+                sum += index;
+            }
+        }
+        return sum;
+    }
+};
+
+
