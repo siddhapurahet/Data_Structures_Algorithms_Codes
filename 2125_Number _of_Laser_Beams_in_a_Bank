@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int numberOfBeams(vector<string>& bank) {
+        
+        int row_size = bank.size();
+        int col_size = bank[0].size();
+        
+
+        vector<int> sec_beams_in_every_row;
+
+        for(int row=0; row<row_size; row++) {
+            int no_of_sec_beams = 0;
+            for(int col=0; col<col_size; col++) {
+                if(bank[row][col] == '1') {
+                    no_of_sec_beams++;
+                }
+            }
+            if(no_of_sec_beams > 0) sec_beams_in_every_row.push_back(no_of_sec_beams);
+        }
+
+        if(sec_beams_in_every_row.size() == 0) return 0;
+        // cout<<"no_of_sec_beams"<<no_of_sec_beams<<endl;
+        int answer = 0;
+        int var = 0;
+
+        for(int index=0; index<sec_beams_in_every_row.size()-1; index++) {
+            var = sec_beams_in_every_row[index] * sec_beams_in_every_row[index+1];
+            answer += var;
+        }
+        return answer;
+    }
+};
+
+
